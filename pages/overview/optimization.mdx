@@ -1,0 +1,42 @@
+## Execution Layer
+
+### Introduction
+The Staco Chain Execution Layer is responsible for processing transactions, executing smart contracts, and maintaining the state of the blockchain. As a fully Staco Virtual Machine (SVM) Layer 1 blockchain, Staco Chain follows the same execution model as Ethereum, ensuring compatibility with existing Ethereum-based tools and applications.
+
+### Overview of the Execution Layer
+🔹 The Execution Layer is a crucial component of Staco Chain, responsible for handling:
+🔹 Transaction Processing – Validating and executing user transactions.
+🔹 Smart Contract Execution – Running decentralized applications (dApps) and executing Solidity-based smart contracts.
+🔹 State Management – Updating account balances, contract storage, and network state after transaction execution.
+🔹 EVM Compatibility – Ensuring seamless interaction with Ethereum-based wallets, tools, and protocols.
+
+### Core Components of the Execution Layer
+- Staco Virtual Machine (DVM)
+Executes smart contracts and processes transactions within the Staco Chain network.
+Fully compatible with Solidity, Vyper, and other Ethereum-based development languages.
+- Transactions & Gas Fees
+Transactions require gas fees, similar to Ethereum, to prevent spam and allocate network resources efficiently.
+Gas fees are paid in the native token of Staco Chain.
+- Smart Contract Execution
+Developers can deploy and interact with smart contracts using Ethereum-standard tools like Remix, Hardhat, Truffle, and Web3.js.
+Supports ERC-20, ERC-721, and other Ethereum token standards.
+- State Management
+The Execution Layer updates the blockchain state by processing transactions and storing contract states.
+Utilizes Merkle Patricia Tries for efficient storage and retrieval of account data.
+- Interoperability
+Staco Chain’s Execution Layer is designed for seamless integration with existing Ethereum infrastructure.
+Supports Ethereum’s JSON-RPC API, allowing easy interaction with wallets like Metamask, Trust Wallet, and other.
+
+### How the Execution Layer Works
+- Transaction Submission – Users submit transactions through wallets or dApps.
+- Transaction Validation – Transactions are verified by the network’s nodes.
+- Execution in the EVM – The smart contract code is executed within the EVM environment.
+- State Update – The blockchain state is updated based on the execution results.
+- Block Finalization – Valid transactions are added to new blocks and propagated across the network.
+
+### Developer Tools & Integration
+To build on Staco Chain, developers can use:
+- Solidity & Vyper for smart contract development.
+- Truffle & Hardhat for contract deployment and testing.
+- Web3.js & Ethers.js for blockchain interactions.
+- Metamask & WalletConnect for user authentication and transactions.

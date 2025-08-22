@@ -1,0 +1,115 @@
+# Node Operator Overview
+The Node Operator section of the Optimism Docs is a collection of guides and tutorials to help you run your own Cybria Mainnet or OP Sepolia nodes. If you'd like to learn more about how Cybria Mainnet works under the hood, refer to the Cybria Mainnet Getting Started Guide or the OP Stack Getting Started Guide. If you want to get right into running a node, feel free to skip ahead to the Node Operator Tutorials section.
+
+# Execution Client
+The Execution Client is responsible for executing the block payloads it receives from the Rollup Node over JSON-RPC via the standard Ethereum Engine API. The Execution Client exposes the standard JSON-RPC API that Ethereum developers are familiar with, and can be used to query blockchain data and submit transactions to the network. The Execution Client is largely analogous to an execution client in Ethereum.
+
+# Software Releases
+It's important to keep your node software up to date to ensure that you won't fall out of sync with other Cybria Mainnet nodes when there's an upgrade. Software updates can also include important bug fixes and patches that can help keep your node stable.
+
+
+# Prerequisites
+| Code                        | Message	Meaning	Category                  |
+| --------------------------- | ----------------------------------------- |
+Golang                        | 1.20++                                    |
+Java 17+                      | Latest                                    |
+Geth                          | Latest                                    |
+500 GB                        | HDD / NVMe                                |
+OS                            | Ubuntu 20.04                              |
+
+
+Tip before running in Linux:
+If synchronizing to Mainnet on Linux or other chains with large data requirements, increase the maximum number of open files allowed using ulimit. If the open files limit is not high enough, a Too many open files RocksDB exception occurs.
+
+## Get Started
+
+Cybria Mainnet Genesis File: <br/>
+[S3 Amazon](https://s3.cybria.io/mainnetgenesis.json) <br/>
+[R2 Cloudflare](https://pub-af5bc273627f49b383d76c2332aa11c0.r2.dev/mainnetgenesis.json)
+
+#### Create Directory
+
+```bash filename="shell" copy
+mkdir cybria_node
+cd cybria_node
+wget https://s3.cybria.io/mainnetgenesis.json
+```
+
+Create a cybria_config.toml with the following options:
+
+```toml filename="shell" copy showLineNumbers
+# Enode Pointing
+bootnodes=["<Mainnet_Gateway_Bootnodes>"]
+
+# Cybria Genesis File
+genesis-file="[PATH]/mainnetgenesis.json"
+
+# Data directory
+data-path="[PATH]/cybria_node
+
+# Chain Configuration 
+rpc-http-enabled=true
+rpc-ws-enabled=true
+host-allowlist=["*"]
+sync-mode=["FULL"]
+rpc-http-host=[IPHOST]
+rpc-ws-host=[IPHOST]
+rpc-http-cors-origins=["all"]
+
+# API Method
+rpc-http-api=["ETH","NET","WEB3","TXPOOL","TRACE"]
+rpc-ws-api=["ETH","NET","WEB3","TXPOOL","TRACE"]
+```
+
+#### List Bootnodes : 
+
+```bash filename="shell" copy showLineNumbers
+enode://33e5955487ba2b59c2dec58689f3b93093afccc0412a31e3820f89fa45a4eb413ab1e903cb7d6f0b4e408c7e2938c413f4602b322a185a0c1014609a4b289aa7@127.0.0.1:30303
+enode://c918ca4f813303902b084fdf4e3bd46e099a3555b69486608ea2a18f8f251a01b6ea20304fb8865ee0db34cc9480f9fb7338ea99e3fd5ff4fcf80c69d5be2b18@127.0.0.1:30304
+enode://f9a05c675eb4120db4552cce8f74a31cd404c2d608a3675d62470e98c2d07949e6cc5bd8b5719c6ec90fbf64e6b1de725a5d59c8f585056568431e10b172d9ea@127.0.0.1:30305
+enode://d1ee05f5b3e5d035795e0d8e16747746231d21645969b4954c5c945a5212bbbb9d38d1f59daccc14792ce7bcf3831188dc5ac6e334ae46d85e797bedbb9a4e85@127.0.0.1:30306
+```
+
+Request to become a Full Node & Validator: info@cybria.io
+
+#### Start Node
+
+```bash filename="shell" copy
+besu --config-file=chain_config.toml
+```
+
+Run in a Service System
+
+```bash filename="shell" copy
+nano /etc/systemd/system/cybrianode.service
+```
+
+```bash filename="shell" copy
+[Unit]
+Description=Cybria Node
+
+[Service]
+Type=simple
+User=root
+Restart=always
+ExecStart=[PATH]/besu --config-file=[PATH]/chain_config.toml 
+
+[Install]
+WantedBy=default.target
+```
+
+Confirm Cybria Node is Running
+
+```
+curl -X POST --data '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":53}' http://127.0.0.1:8545
+```
+
+Response:
+
+```bash filename="shell" copy
+{
+  "jsonrpc" : "2.0",
+  "id" : 53,
+  "result" : "0x3e8"
+}
+```

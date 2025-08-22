@@ -1,0 +1,41 @@
+# Smart Contract Deployment
+
+Anyone can build a smart contract application on the Staco Chain Mainnet or Testnet network. below is step by step walkthrough on how to deploy a simple smart contract counter using Remix. 
+
+Note: Before you start deploying using Remix, make sure you are connected Staco Mainnet / Testnet in your metamask. See the Connect a Chain section for details. 
+
+## What is Remix? 
+
+Remix is open-source Ethereum IDE you can use to write, compile and debug Solidity code. As such, Remix can be a hugely important tool in Web3 and dApps development/ 
+
+you can jump to the Remix text editor [Here](https://remix.ethereum.org) and copy paste this code below. 
+
+```solidity filename="counter.sol" copy
+// SPDX-License-Identifier: MIT 
+
+pragma solidity ^0.8.4;
+
+contract TestStacoSimpleCounter {
+    int private count = 0;
+    function incrementCounter() public {
+        count += 1;
+    }
+
+    function decrementCounter() public {
+        count -= 1;
+    }
+
+    function getCount() public view returns (int) {
+        return count;
+    }
+}
+```
+
+## Compile Code
+
+After the code is written, compile it using Solidity version based on the code written. Once the code is compiled, a green Check will be shown. it is ready to be deployed on the Staco Blockchain. Click the Deploy button and a Metamask window will show pop up. 
+
+## Smart Contract Ready
+
+After the smartcontract is deployed, the contract address can be seen and you can interact. you can verify your contract on Explorer Staco Mainnet.
+
