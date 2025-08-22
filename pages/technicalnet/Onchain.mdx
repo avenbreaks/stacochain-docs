@@ -1,0 +1,31 @@
+# Onchain Gas Transaction
+On Staco there are a few different types of transactions:
+Regular transactions: a transaction from one account to another.
+Contract deployment transactions: a transaction without a 'to' address, where the data field is used for the contract code.
+Execution of a contract: a transaction that interacts with a deployed smart contract. In this case, 'to' address is the smart contract address.
+
+## On gas
+As mentioned, transactions cost gas to execute. Simple transfer transactions require 21000 units of Gas.
+So for Bob to send Alice 1 STACO at a baseFeePerGas of 190 gwei and maxPriorityFeePerGas of 10 gwei, Bob will need to pay the following fee:
+```bash
+(190 + 10) * 21000 = 4,200,000 gwei
+--or--
+0.0042 STACO
+```
+
+- Bob's account will be debited -1.0042 STACO (1 STACOfor Alice + 0.0042 STACO in gas fees)
+- Alice's account will be credited +1.0 STACO
+- The base fee will be burned -0.00399 STACO
+- Validator keeps the tip +0.000210 STACO
+
+![Onchain Transactions](https://www.gitbook.com/cdn-cgi/image/dpr=2,width=2400,onerror=redirect,format=auto/https%3A%2F%2Fcontent.gitbook.com%2Fcontent%2F1VXJbtkau2p81UKt5E4R%2Fblobs%2Fc61ohdRuiLR3IApkVi66%2Fonchain-txs.png)
+
+## Block size
+Each block has a target size of 15 million gas, but the size of blocks will increase or decrease in accordance with network demand, up until the block limit of 30 million gas (2x the target block size). The protocol achieves an equilibrium block size of 15 million on average through the process of tâtonnement. This means if the block size is greater than the target block size, the protocol will increase the base fee for the following block. Similarly, the protocol will decrease the base fee if the block size is less than the target block size. The amount by which the base fee is adjusted is proportional to how far the current block size is from the target. More on blocks.
+
+## Base fee
+Every block has a base fee which acts as a reserve price. To be eligible for inclusion in a block the offered price per gas must at least equal the base fee. The base fee is calculated independently of the current block and is instead determined by the blocks before it - making transaction fees more predictable for users. When the block is created this base fee is "burned", removing it from circulation.
+The base fee is calculated by a formula that compares the size of the previous block (the amount of gas used for all the transactions) with the target size. The base fee will increase by a maximum of 12.5% per block if the target block size is exceeded. This exponential growth makes it economically non-viable for block size to remain high indefinitely.
+
+## EIP-1559
+The base fee on Staco is, like Ethereum, computed via the EIP-1559 mechanism. The EIP-1559 parameters used by Staco differ from those used by Ethereum as follows.

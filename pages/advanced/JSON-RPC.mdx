@@ -1,0 +1,44 @@
+# Ethereum JSON RPC Methods
+The execution engine's RPC interface is identical to the upstream [Geth RPC interface.](https://geth.ethereum.org/docs/rpc/server) The responses are nearly identical too, except we also include the L1 gas usage and price information.
+Ethereum is a decentralized, open-source blockchain network with Turing-complete smart contract functionality. Ether (ETH) is the native cryptocurrency. As of mid-September 2022, Ethereum uses the Proof of Stake consensus mechanism.
+
+### RPC Methods
+This section provides instructions on how to use JSON-RPC API on the Ethereum (execution layer) network. 
+
+### Error Codes
+The following list contains all possible error codes and associated messages:
+
+| Code                        | Message	Meaning	Category                                                                   |
+| --------------------------- | ------------------------------------------------------------------------------------------ |
+| -32700	|  Parse error	Invalid JSON standard                                                                            |
+| -32600	|  Invalid request	JSON is not a valid request object standard                                                  |
+| -32601    | 	Method not found Method does not exist standard                                                            |
+| -32602    | 	Invalid params Invalid method parameters standard                                                          |
+| -32603    | 	Internal error Internal JSON-RPC error standard                                                            |
+| -32000    | 	Invalid input Missing or invalid parameters	non-standard                                                   |
+| -32001    | 	Resource not found	Requested resource not found non-standard                                              |
+| -32002    | 	Resource unavailable Requested resource not available non-standard                                         |
+| -32003    | 	Transaction rejected Transaction creation failed non-standard                                              |
+| -32004    | 	Method not supported Method is not implemented non-standard                                                |
+| -32005    | 	Limit exceeded	Request exceeds defined limit non-standard                                                 |
+| -32006	|  JSON-RPC version not supported	Version of JSON-RPC protocol is not supported non-standard                     |
+
+
+Example call eth_blockNumber
+
+```bash filename="shell" copy
+curl https://rpc-full-mainnet.stacochain.com	 \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}' | jq
+```
+
+Response 
+
+```bash filename="shell" copy
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x65a8db"
+}
+```

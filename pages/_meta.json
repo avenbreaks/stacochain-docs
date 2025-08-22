@@ -1,0 +1,36 @@
+{
+  "index": "Introduction",
+  "overview": "Blockchain Overview",
+  "advanced": "Getting Started",
+
+  "tutorial": "Onchain",
+  "ecosystem": "Ecosystem",
+  "technicalnet": "Technical Network",
+  "socialmedia": {
+    "title": "Social Media",
+    "type": "menu",
+    "items": {
+      "telegram": {
+        "title": "Website ↗",
+        "href": "https://stacochain.com",
+        "newWindow": true
+      },
+      "github": {
+        "title": "Github ↗",
+        "href": "https://github.com/staco-chain",
+        "newWindow": true
+      }
+    }
+  },
+  "features": {
+    "title": "Features",
+    "type": "menu",
+    "items": {
+      "explorer": {
+        "title": "Mainnet Explorer ↗",
+        "href": "https://explorer.stacochain.com",
+        "newWindow": true
+      }
+    }
+  }
+}
