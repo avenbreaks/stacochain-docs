@@ -1,12 +1,11 @@
 # Node Operator Overview
-The Node Operator section of the Optimism Docs is a collection of guides and tutorials to help you run your own Cybria Mainnet or OP Sepolia nodes. If you'd like to learn more about how Cybria Mainnet works under the hood, refer to the Cybria Mainnet Getting Started Guide or the OP Stack Getting Started Guide. If you want to get right into running a node, feel free to skip ahead to the Node Operator Tutorials section.
+The Node Operator section of the Staco Docs is a collection of guides and tutorials to help you run your own Staco Mainnet nodes. If you'd like to learn more about how Staco Mainnet works under the hood, refer to the Staco Mainnet Getting Started Guide. If you want to get right into running a node, you can skip ahead to the Node Operator Tutorials section.
 
 # Execution Client
-The Execution Client is responsible for executing the block payloads it receives from the Rollup Node over JSON-RPC via the standard Ethereum Engine API. The Execution Client exposes the standard JSON-RPC API that Ethereum developers are familiar with, and can be used to query blockchain data and submit transactions to the network. The Execution Client is largely analogous to an execution client in Ethereum.
+The Execution Client is responsible for processing and validating block payloads within the Staco Mainnet. It exposes the standard Ethereum-compatible JSON-RPC API, which developers can use to query blockchain data and submit transactions to the network. In essence, the Execution Client serves the same purpose as an execution client in Ethereum, but within the context of Staco’s Layer 1 PoA consensus model.
 
 # Software Releases
-It's important to keep your node software up to date to ensure that you won't fall out of sync with other Cybria Mainnet nodes when there's an upgrade. Software updates can also include important bug fixes and patches that can help keep your node stable.
-
+It is essential to keep your node software up to date to remain in sync with the rest of the Staco Mainnet. Updates may include critical consensus improvements, security patches, and performance optimizations to ensure that your node stays reliable and secure.
 
 # Prerequisites
 | Code                        | Message	Meaning	Category                  |
@@ -23,29 +22,29 @@ If synchronizing to Mainnet on Linux or other chains with large data requirement
 
 ## Get Started
 
-Cybria Mainnet Genesis File: <br/>
-[S3 Amazon](https://s3.cybria.io/mainnetgenesis.json) <br/>
-[R2 Cloudflare](https://pub-af5bc273627f49b383d76c2332aa11c0.r2.dev/mainnetgenesis.json)
+Staco Mainnet Genesis File: <br/>
+[TBA](https://stacochain.com) <br/>
+TBA](https://stacochain.com)
 
 #### Create Directory
 
 ```bash filename="shell" copy
-mkdir cybria_node
-cd cybria_node
-wget https://s3.cybria.io/mainnetgenesis.json
+mkdir staco_node
+cd staco_node
+wget https://stacochain.com/mainnetgenesis.json
 ```
 
-Create a cybria_config.toml with the following options:
+Create a staco_config.toml with the following options:
 
 ```toml filename="shell" copy showLineNumbers
 # Enode Pointing
 bootnodes=["<Mainnet_Gateway_Bootnodes>"]
 
-# Cybria Genesis File
+# Staco Genesis File
 genesis-file="[PATH]/mainnetgenesis.json"
 
 # Data directory
-data-path="[PATH]/cybria_node
+data-path="[PATH]/staco_node
 
 # Chain Configuration 
 rpc-http-enabled=true
@@ -57,8 +56,8 @@ rpc-ws-host=[IPHOST]
 rpc-http-cors-origins=["all"]
 
 # API Method
-rpc-http-api=["ETH","NET","WEB3","TXPOOL","TRACE"]
-rpc-ws-api=["ETH","NET","WEB3","TXPOOL","TRACE"]
+rpc-http-api=["ETH","NET","WEB3"]
+rpc-ws-api=["ETH","NET","WEB3"]
 ```
 
 #### List Bootnodes : 
@@ -70,8 +69,6 @@ enode://f9a05c675eb4120db4552cce8f74a31cd404c2d608a3675d62470e98c2d07949e6cc5bd8
 enode://d1ee05f5b3e5d035795e0d8e16747746231d21645969b4954c5c945a5212bbbb9d38d1f59daccc14792ce7bcf3831188dc5ac6e334ae46d85e797bedbb9a4e85@127.0.0.1:30306
 ```
 
-Request to become a Full Node & Validator: info@cybria.io
-
 #### Start Node
 
 ```bash filename="shell" copy
@@ -81,12 +78,12 @@ besu --config-file=chain_config.toml
 Run in a Service System
 
 ```bash filename="shell" copy
-nano /etc/systemd/system/cybrianode.service
+nano /etc/systemd/system/stacochain.service
 ```
 
 ```bash filename="shell" copy
 [Unit]
-Description=Cybria Node
+Description=Staco Node
 
 [Service]
 Type=simple
@@ -98,7 +95,7 @@ ExecStart=[PATH]/besu --config-file=[PATH]/chain_config.toml
 WantedBy=default.target
 ```
 
-Confirm Cybria Node is Running
+Confirm Staco Node is Running
 
 ```
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":53}' http://127.0.0.1:8545
