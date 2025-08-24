@@ -7,17 +7,17 @@ const config: DocsThemeConfig = {
   logo: (
     <>
       <img src={`${basePath}/cardinal.png`} width="36" />
-      <h1 className="nx-font-bold nx-text-2xl">Cardinal</h1>
+      <h1 className="nx-font-bold nx-text-2xl">Staco</h1>
     </>
   ),
   head: (
     <>
-      <link rel="icon" type="image/png" href={`${basePath}/cardinal.png`} />
+      <link rel="icon" type="image/png" href={`${basePath}/staco.png`} />
     </>
   ),
   useNextSeoProps() {
     return {
-      titleTemplate: '%s – Cardinal',
+      titleTemplate: '%s – Staco Mainnet Docs',
     };
   },
   editLink: {
@@ -29,7 +29,7 @@ const config: DocsThemeConfig = {
   project: {
     link: '',
   },
-  docsRepositoryBase: 'https://github.com/cardinalhq/cardinal-docs',
+  docsRepositoryBase: 'https://github.com/staco-chain/staco-docs',
   footer: {
     text: '© 2025 Staco Chain, Inc. All rights reserved.',
   },

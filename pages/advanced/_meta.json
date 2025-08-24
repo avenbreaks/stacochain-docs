@@ -1,5 +1,5 @@
 {
-    "json-rpc": "JSON-RPC",
+    "jsonrpc": "JSON-RPC",
     "networks": "Networks",
     "node": "Running Node"
 }
