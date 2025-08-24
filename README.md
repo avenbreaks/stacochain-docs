@@ -1,6 +1,6 @@
-# Cardinal Product Documentation
+# Staco Product Documentation
 
-https://docs.cardinalhq.io
+https://docs.stacochain.com
 
 ## Local Development
 

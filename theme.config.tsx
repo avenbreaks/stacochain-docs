@@ -6,7 +6,7 @@ const basePath = '';
 const config: DocsThemeConfig = {
   logo: (
     <>
-      <img src={`${basePath}/cardinal.png`} width="36" />
+      <img src={`${basePath}/staco.png`} width="36" />
       <h1 className="nx-font-bold nx-text-2xl">Staco</h1>
     </>
   ),
